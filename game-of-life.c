@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#define COLS 20
-#define ROWS 15
+#define COLS 24
+#define ROWS 20
 #define OFF 0
 #define ON 1
 #define UPDATE_TIME 1
