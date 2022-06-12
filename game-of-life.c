@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#define COLS 24
-#define ROWS 20
+#define UPDATE_TIME 500000  /* 0.5 seconds */
+#define MAXCOLS 80
+#define MAXROWS 80
 #define OFF 0
 #define ON 1
-#define UPDATE_TIME 1
 
-int board[ROWS][COLS] = { OFF };
-int next_board[ROWS][COLS] = { OFF };
+static int ROWS, COLS;
+int board[MAXROWS][MAXCOLS] = { OFF };
+int next_board[MAXROWS][MAXCOLS] = { OFF };
 
 void print_board()
 {
@@ -48,10 +49,12 @@ int next_cell_state(int x, int y)
         {
             if (i == 0 && j == 0)
                 continue;
-            vx = x+i;
-            vy = y+j;
-            if (vx < 0 || vy < 0 || vx >= COLS || vy >= ROWS)
-                continue;
+            vx = (x+i);
+            vy = (y+j);
+            if (vx < 0) vx += ROWS;
+            else if (vx >= ROWS) vx -= ROWS;
+            if (vy < 0) vy += COLS; 
+            else if (vy >= COLS) vy -= COLS; 
             if (board[vx][vy] == ON)
                 living += 1;
         }
@@ -91,6 +94,7 @@ void clear_screen()
 int main()
 {
     int n, x, y;
+    scanf("%d %d", &ROWS, &COLS);
     scanf("%d", &n);
     while (n > 0)
     {
@@ -102,7 +106,7 @@ int main()
     {
         print_board();
         update_board();
-        sleep(UPDATE_TIME);
+        usleep(UPDATE_TIME);
         clear_screen();
     }
     return 0;
