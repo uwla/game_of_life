@@ -1,0 +1,47 @@
+# GENERIC TEMPLATE (auto-generated!)
+
+# ignore files without extensions, except for Makefile
+*
+!/**/
+!*.*
+!Makefile
+
+# ignore compiled assets
+*.o
+*.out
+*.class
+
+# ignore env files
+.env
+.env.backup
+
+# ignore ignore compressed files
+*.tar
+*.tar.bz2
+*.tar.gz
+*.tgz
+*.bz2
+*.rar
+*.zip
+*.7z
+
+# ignore videos
+*.mp4
+*.mkv
+*.webm
+
+# ignore R files
+.Rproj.user
+*.Rproj.user
+*.Rhistory
+*.Rproj
+.RData
+Rplots.pdf
+
+# ignore LaTeX builds
+*.log
+*.fls
+*.fdb_latexmk
+*.aux
+*.synctex.gz
+_minted-*
